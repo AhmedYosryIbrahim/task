@@ -24,7 +24,10 @@ class DefaultTextButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-              color: color, fontSize: fontSize, fontWeight: fontWeight),
+              color: color,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              fontFamily: 'Almarai'),
         ));
   }
 }

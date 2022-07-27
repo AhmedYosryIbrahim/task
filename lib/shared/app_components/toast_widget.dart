@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
-
-toastWidget({required String massage, required Color color}) {
-  return showToast(
-    massage,
-    duration: const Duration(seconds: 5),
-    position: ToastPosition.bottom,
-    radius: 13.0,
-    // backgroundColor: color,
-    backgroundColor: color,
-    textPadding: const EdgeInsets.all(20),
-    textStyle: const TextStyle(fontSize: 16 , color: Colors.white),
-  );
-}
+// import 'package:bot_toast/bot_toast.dart';
+// import 'package:flutter/material.dart';
+//
+//  toastWidget({required String massage, required Color color}) {
+//   return BotToast.showText(
+//     text: massage,
+//     duration: const Duration(seconds: 3),
+//     align: AlignmentDirectional.bottomCenter,
+//     // backgroundColor: color,
+//     contentColor: color,
+//     contentPadding: const EdgeInsets.all(20),
+//     textStyle: const TextStyle(fontSize: 16),
+//   );
+// }

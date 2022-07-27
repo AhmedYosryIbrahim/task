@@ -34,18 +34,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  # دة علشان الترجمة
-  easy_localization: ^3.0.0
   # دة علشان حفظ التوكين او اى حاجة تحب تحفظها فى التطبيق
-  shared_preferences: ^2.0.5
-  # دة علشان تعرف تعمل خانة للتلفون ومعاها الدول
-  intl_phone_number_input: ^0.7.0+2
+  shared_preferences: ^2.0.15
   # دة علشان تجيب شوية icons كويسة
   font_awesome_flutter: ^9.0.0
   # دة علشان تعرف تجيب الصور من Gallery
   image_picker: ^0.8.4+4
-  # دة علشان تعرف تقص الصور
-  image_cropper: ^1.4.1
   # دة لو حبيت تكيش الصور على ال storage
   cached_network_image: ^3.1.0+1
   # دة علشان تخلى جميع الاسكرينات تنفع فى جميع احجام الاجهزة
@@ -56,57 +50,21 @@ dependencies:
   path_provider: ^2.0.8
   # دة بيعمل شوية dialog حلوة
   awesome_dialog: ^2.1.2
-  # دة طريقة فى الدارت بتخليك ممكن ترجع كذا قيمة
-  either_dart: ^0.1.4
-  # دة بيعمل id عشوائية مميزة غالبا يتم استخدامها فى ال hero
-  uuid: ^3.0.5
-  # دة بيعمل toast جميلة جدا
-  oktoast: ^3.1.5
-  # دة علشان تعرف تعمل pin code sms للكود ال بيجيلك على التلفون
-  pin_code_fields: ^7.3.0
   # دة البلوك State management
   flutter_bloc: ^8.0.1
   # دة البلوك State management
   bloc: ^8.0.2
-  # دة الدروب منيو ل one item
-  dropdown_search: ^2.0.1
-  # دة الدروب منيو ل  multi item
-  multi_select_flutter: ^4.0.0
   flutter_svg: ^1.0.0
-  #ده علشان التاب بار الي في صفحة الحجوزات
-  tab_indicator_styler: ^2.0.0
-  datetime_picker_formfield: ^2.0.0
-  carousel_slider: ^4.0.0
-  proste_bezier_curve: ^2.0.2
-  expandable: ^5.0.1
-  modal_bottom_sheet: ^2.0.0
-  #علشان التقيمات البيظهر فيها بار
-  step_progress_indicator: ^1.0.2
   permission_handler: ^8.1.2
   path: ^1.8.0
   intl: ^0.17.0
-  # دة علشان التقيمات بالنجوم
-  flutter_rating_bar: ^4.0.0
-  date_picker_timeline: ^1.2.3
-  convex_bottom_bar: ^3.0.0
+  url_launcher: ^6.0.20
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.10
   cloud_firestore: ^3.1.10
   firebase_storage: ^10.2.9
-  firebase_core_web: ^1.6.4
-  url_launcher: ^6.0.20
-  flutter_spinbox: ^0.9.0
-  firebase_messaging: ^11.4.2
-  flutter_local_notifications: ^9.3.2
-  rxdart: ^0.27.3
-  http: ^0.13.4
   lazy_load_scrollview: ^1.3.0
-  google_mobile_ads: ^1.3.0
-  url_launcher_android: ^6.0.0
-  searchable_dropdown:
-    git:
-      url: https://github.com/abbasghomi/searchable_dropdown.git
-      ref: feature/migrated-to-nullsafety
+  bot_toast: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -129,6 +87,24 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+    - assets/icons/
+
+  fonts:
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/Almarai-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Almarai-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Almarai-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Almarai-ExtraBold.ttf
+          weight: 800
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/shared/styles/ConstansColors.dart';
 
 // ignore: must_be_immutable
 class InputFieldMake extends StatelessWidget {
@@ -74,7 +75,7 @@ class InputFieldMake extends StatelessWidget {
                       onPressed: suffixPressed,
                       icon: Icon(
                         suffix,
-                        color: const Color(0xff2c3e50),
+                        color: const Color(0xff9C9A99),
                       ),
                     )
                   : null,
@@ -82,28 +83,28 @@ class InputFieldMake extends StatelessWidget {
                   const TextStyle(fontSize: 16, color: Color(0xffAAAAAA)),
               labelStyle:
                   const TextStyle(fontSize: 16, color: Color(0xffAAAAAA)),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+              enabledBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                   borderSide: BorderSide(
                     width: 2,
-                    color: Colors.grey.shade200,
+                    color: Constant.colorBackground,
                   )),
-              border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                   borderSide: BorderSide(
                     width: 2,
-                    color: Colors.grey.shade500,
+                    color: Constant.colorBackground,
                   )),
               labelText: title,
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: Colors.grey.shade500,
+              focusedBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderSide:  BorderSide(
+                    width: 1,
+                    color: Constant.colorBackground,
                   )),
-              contentPadding: const EdgeInsets.only(top: 17, bottom: 17),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 17, vertical: 17),
               counterText: "",
-              fillColor: Colors.white,
+              fillColor: Constant.formBackground,
               filled: true),
         ),
       ),

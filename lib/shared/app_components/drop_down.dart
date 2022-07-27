@@ -22,7 +22,7 @@ class CustomDropDrown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: margin ?? 10),
+      padding: EdgeInsets.symmetric(horizontal: margin ?? 15),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: InputDecorator(
@@ -38,6 +38,11 @@ class CustomDropDrown extends StatelessWidget {
             ),
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+            prefixIcon: prefixIcon ??
+                SvgPicture.asset(
+                  "assets/images/drop_icon.svg",
+                  fit: BoxFit.scaleDown,
+                ),
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
@@ -47,7 +52,7 @@ class CustomDropDrown extends StatelessWidget {
                 Icons.arrow_drop_down,
               ),
               iconSize: 50,
-              iconEnabledColor: Constant.secondaryColor,
+              iconEnabledColor: Constant.colorIcon1,
               elevation: 16,
               //style: const TextStyle(color: Colors.deepPurple),
               // onChanged: (String? newValue) {

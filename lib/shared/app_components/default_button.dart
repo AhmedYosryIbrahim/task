@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../styles/ConstansColors.dart';
 
@@ -6,6 +7,8 @@ class DefaultButton extends StatelessWidget {
   final double width;
   final Color background;
   final Color textColor;
+  final double textSize;
+  final FontWeight textWeight;
   final bool isUpperCase;
   final double radius;
   final Function() function;
@@ -14,9 +17,11 @@ class DefaultButton extends StatelessWidget {
   const DefaultButton(
       {Key? key,
       this.width = double.infinity,
-      this.background= Constant.primaryColor,
-      this.textColor= Constant.textColor1,
-      this.isUpperCase= true,
+      this.background = Constant.defaultColor,
+      this.textColor = Constant.textColorWhite,
+      this.textSize = 14,
+      this.textWeight = FontWeight.w400,
+      this.isUpperCase = true,
       this.radius = 10,
       required this.function,
       required this.text})
@@ -31,8 +36,11 @@ class DefaultButton extends StatelessWidget {
         onPressed: function,
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
-          style:  TextStyle(
+          style: TextStyle(
             color: textColor,
+            fontSize: textSize.sp,
+            fontWeight: textWeight,
+            fontFamily: 'Almarai',
           ),
         ),
       ),
@@ -45,6 +53,3 @@ class DefaultButton extends StatelessWidget {
     );
   }
 }
-
-
-
