@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/view/loading_view/loading_screen.dart';
 import 'helpers/local_storage/local_storage.dart';
 import 'shared/MyBlocObserver.dart';
 import 'shared/styles/constant_text_style.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
         // مش مهم تشيل بتاع زميلك المهم , تاخد اسم كلاس زميلك وتعملة كومينت زى المثال التحت
         // SplashScreen()
         // وتحط الكلاس بتاعك
-        home:  LayoutScreen(),
+        home:  LoadingScreen(),
       ),
     );
   }
