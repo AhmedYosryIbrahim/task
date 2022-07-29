@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "600634800621",
+    "project_id": "taskkortoba",
+    "storage_bucket": "taskkortoba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600634800621:android:359baef6056daf96718fe4",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600634800621-778tg3ffv9sabmo2orih8kaq7l7qnmlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Lo695aBAAC4ugwCBAwwFW65bShoR-uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600634800621-778tg3ffv9sabmo2orih8kaq7l7qnmlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

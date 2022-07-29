@@ -1,9 +1,12 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/firebase_options.dart';
 import 'package:untitled/view/loading_view/loading_screen.dart';
+import 'package:untitled/view/login_view/login_screen.dart';
 import 'helpers/local_storage/local_storage.dart';
 import 'shared/MyBlocObserver.dart';
 import 'shared/styles/constant_text_style.dart';
@@ -22,6 +25,9 @@ void main() async {
   );
   //دية علشان تعمل  Instance مرة واحدة فى التطبيق كلة
   await LocalStorage.init();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     MyApp(),
@@ -57,7 +63,7 @@ class MyApp extends StatelessWidget {
         // مش مهم تشيل بتاع زميلك المهم , تاخد اسم كلاس زميلك وتعملة كومينت زى المثال التحت
         // SplashScreen()
         // وتحط الكلاس بتاعك
-        home:  LoadingScreen(),
+        home:  LoginScreen(),
       ),
     );
   }

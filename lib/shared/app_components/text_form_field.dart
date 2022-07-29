@@ -104,7 +104,7 @@ class InputFieldMake extends StatelessWidget {
                   )),
               contentPadding: const EdgeInsets.symmetric(horizontal: 17, vertical: 17),
               counterText: "",
-              fillColor: Constant.formBackground,
+              fillColor: Constant.shadowColorLight,
               filled: true),
         ),
       ),
