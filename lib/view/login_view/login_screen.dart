@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/helpers/local_storage/local_storage.dart';
 import 'package:untitled/shared/app_components/default_button.dart';
+import 'package:untitled/shared/app_components/error_dialog.dart';
 import 'package:untitled/shared/app_components/nav.dart';
 import 'package:untitled/shared/app_components/offer_button.dart';
 import 'package:untitled/shared/app_components/text_button.dart';
@@ -32,6 +33,9 @@ class LoginScreen extends StatelessWidget {
           if (state is AppLoginSuccessState) {
             LocalStorage.saveData(key: 'uId', value: state.uId);
             navigateFinish(context, LayoutScreen());
+          }
+          if(state is AppLoginErrorState){
+            errorDialog(context: context,error:  state.error);
           }
         },
         builder: (context, state) {

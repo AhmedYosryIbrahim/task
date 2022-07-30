@@ -1,14 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/helpers/local_storage/local_storage.dart';
+import 'package:untitled/shared/app_components/nav.dart';
 import 'package:untitled/shared/styles/ConstansColors.dart';
+import 'package:untitled/view/login_view/login_screen.dart';
 
-class AlertDialogWidget extends StatelessWidget {
+class LogoutDialog extends StatelessWidget {
   @override
   final String title;
   final String title2;
 
-  const AlertDialogWidget({required this.title2, required this.title});
+  const LogoutDialog({required this.title2, required this.title});
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
@@ -45,8 +48,8 @@ class AlertDialogWidget extends StatelessWidget {
         TextButton(
           onPressed: ()async {
             await FirebaseAuth.instance.signOut().then((value) {
-              // LocalStorage.sharedPreferences.clear();
-              // navigateFinish(context, LoginScreen());
+              LocalStorage.sharedPreferences.clear();
+              navigateFinish(context, LoginScreen());
             });
           },
           child: Container(

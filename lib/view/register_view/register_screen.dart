@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/helpers/local_storage/local_storage.dart';
 import 'package:untitled/shared/app_components/default_button.dart';
+import 'package:untitled/shared/app_components/error_dialog.dart';
 import 'package:untitled/shared/app_components/nav.dart';
 import 'package:untitled/shared/app_components/text_form_field.dart';
 import 'package:untitled/shared/styles/ConstansColors.dart';
@@ -33,6 +34,9 @@ class RegisterScreen extends StatelessWidget {
           if (state is AppRegisterCreateUserSuccessState) {
             LocalStorage.saveData(key: 'uId', value: state.uId);
             navigateFinish(context, LayoutScreen());
+          }
+          if (state is AppRegisterCreateUserErrorState) {
+            errorDialog(context: context, error: state.error);
           }
         },
         builder: (context, state) {

@@ -15,6 +15,9 @@ class UserModel {
     this.lastName,
     this.email,
     this.password,
+    this.profileImageUrl,
+    this.coverImageUrl,
+    this.posts = const [],
     this.createdAt,
   });
 
@@ -23,6 +26,9 @@ class UserModel {
   String? lastName;
   String? email;
   String? password;
+  String? profileImageUrl;
+  String? coverImageUrl;
+  List<String>? posts;
   String? createdAt;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -31,6 +37,9 @@ class UserModel {
     lastName: json["lastName"],
     email: json["email"],
     password: json["password"],
+    profileImageUrl: json["profileImageUrl"],
+    coverImageUrl: json["coverImageUrl"],
+    posts: json["posts"] !=null?  List<String>.from(json["posts"].map((x) => x)) :[] ,
     createdAt: json["createdAt"],
   );
 
@@ -40,6 +49,9 @@ class UserModel {
     "lastName": lastName,
     "email": email,
     "password": password,
+    "profileImageUrl": profileImageUrl,
+    "coverImageUrl": coverImageUrl,
+    "posts": List<dynamic>.from(posts!.map((x) => x)) ?? const [],
     "createdAt": createdAt,
   };
 }

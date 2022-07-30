@@ -1,212 +1,188 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/shared/app_components/default_button.dart';
 import 'package:untitled/shared/app_components/text_button.dart';
 import 'package:untitled/shared/styles/ConstansColors.dart';
 import 'package:untitled/shared/styles/constant_text_style.dart';
+import 'package:untitled/view/home_view/post_card.dart';
+import 'package:untitled/view/loading_view/loading_screen.dart';
+import 'package:untitled/view_model/layout_view_model/layout_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final TextEditingController _postController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-        backgroundColor: Constant.colorBackground,
-        body: ListView.builder(
-      itemBuilder: (context, index) {
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.w),
-          ),
-          margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30.r,
-                      backgroundColor: Constant.shadowColorLight,
-                      child: Icon(
-                        FontAwesomeIcons.solidUser,
-                        color: Constant.iconColor,
-                      ),
-                    ),
-                    Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        FontAwesomeIcons.shareAlt,
-                        color: Constant.shadowColor,
-                      ),
-                    ),
-
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        FontAwesomeIcons.bookmark,
-                        color: Constant.shadowColor,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 23.0,left: 18,right: 18),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                                FontAwesomeIcons.thumbsUp,
-                                color: Constant.shadowColor,
-                              ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal:  6.0,vertical: 3.0),
-                              color: Constant.shadowColorLight,
-                              child: Text(
-                                '5',
-                                style: ConstantTextStyle.medium14BlueTextStyle,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+    LayoutCubit.get(context).getPosts();
+    return BlocConsumer<LayoutCubit, LayoutState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is LayoutLikePostSuccessState) {
+          LayoutCubit.get(context).getPosts();
+        }
+        if (state is LayoutUnlikePostSuccessState) {
+          LayoutCubit.get(context).getPosts();
+        }
+        if (state is LayoutSavePostSuccessState) {
+          LayoutCubit.get(context).getUser();
+        }
+        if (state is LayoutUnsavePostSuccessState) {
+          LayoutCubit.get(context).getUser();
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+          backgroundColor: Constant.colorBackground,
+          body: LayoutCubit.get(context).posts.isEmpty
+              ? state is LayoutGetPostsLoadingState
+                  ? const LoadingScreen()
+                  : const Center(child: Text('لا يوجد منشورات'))
+              : ListView.builder(
+                  itemBuilder: (context, index) {
+                    return PostCard(
+                        post: LayoutCubit.get(context).posts![index]);
+                  },
+                  itemCount: LayoutCubit.get(context).posts!.length,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Image.asset(
-                  'assets/images/postImg2.png',
-                  fit: BoxFit.fill,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'هذا النص هو مثال لنص يمكن ان يستبدل في نفس المساحة , لقد تم توليد هذا النص من مولد النص',
-                  style: ConstantTextStyle.medium14BlueTextStyle,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  barrierColor: Colors.grey[700],
+                  builder: (context) => BlocBuilder<LayoutCubit, LayoutState>(
+                        builder: (context, state) {
+                          return Dialog(
+                              insetPadding: EdgeInsets.all(10),
+                              child: Stack(
+                                alignment: Alignment.topCenter,
+                                children: <Widget>[
+                                  Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.r),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            LayoutCubit.get(context)
+                                                .pickPostImageGallery(context);
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 157.h,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                              color: Constant.shadowColorLight,
+                                            ),
+                                            child: LayoutCubit.get(context)
+                                                        .postImage !=
+                                                    null
+                                                ? Image.file(
+                                                    LayoutCubit.get(context)
+                                                        .postImage!,
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                : Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        FontAwesomeIcons.camera,
+                                                        color: Constant
+                                                            .shadowColor,
+                                                        size: 60,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10.h,
+                                                      ),
+                                                      Text(
+                                                        'رفع صورة',
+                                                        style: ConstantTextStyle
+                                                            .medium14BlueTextStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 20.h,
+                                        ),
+                                        Text(
+                                          'اكتب تعليقا حول الصورة',
+                                          style: ConstantTextStyle
+                                              .content14BlueTextStyle,
+                                        ),
+                                        TextField(
+                                          textDirection: TextDirection.rtl,
+                                          textAlign: TextAlign.right,
+                                          style: ConstantTextStyle
+                                              .medium14BlueTextStyle,
+                                          maxLines: 2,
+                                          maxLength: 120,
+                                          controller: _postController,
+                                          cursorColor: Constant.defaultColor,
+                                          decoration: InputDecoration(
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Constant.defaultColor,
+                                              ),
+                                            ),
+                                            hintText: 'أدخل التعليق',
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            DefaultButton(
+                                              function: () {
+                                                LayoutCubit.get(context)
+                                                    .uploadPostImage(
+                                                        content: _postController
+                                                            .text);
+                                              },
+                                              text: 'نشر',
+                                              width: 100.w,
+                                              radius: 5,
+                                              textSize: 16.sp,
+                                            ),
+                                            DefaultTextButton(
+                                              function: () {},
+                                              text: 'تجاهل',
+                                              color: Constant.defaultColor,
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w400,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10.h,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ));
+                        },
+                      ));
+            },
+            backgroundColor: Constant.defaultColor,
+            child: const Icon(Icons.add),
           ),
         );
       },
-      itemCount: 10,
-    ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              barrierColor: Colors.grey[700],
-              builder: (context) => Dialog(
-
-                  insetPadding: EdgeInsets.all(10),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.r),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: 157.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: Constant.shadowColorLight,
-
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    FontAwesomeIcons.camera,
-                                    color: Constant.shadowColor,
-                                    size: 60,
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Text(
-                                    'رفع صورة',
-                                    style: ConstantTextStyle
-                                        .medium14BlueTextStyle,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height:20.h,
-                            ),
-                            Text(
-                              'اكتب تعليقا حول الصورة',
-                              style:
-                              ConstantTextStyle.content14BlueTextStyle,
-                            ),
-                            TextField(
-                              textDirection: TextDirection.rtl,
-                              textAlign: TextAlign.right,
-                              style:
-                              ConstantTextStyle.medium14BlueTextStyle,
-                              maxLines: 2,
-                              maxLength: 120,
-                              cursorColor: Constant.defaultColor,
-                              decoration: InputDecoration(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Constant.defaultColor,
-                                  ),
-                                ),
-                                hintText: 'أدخل التعليق',
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                DefaultButton(
-                                  function: () {},
-                                  text: 'نشر',
-                                  width: 100.w,
-                                  radius: 5,
-                                  textSize: 16.sp,
-                                ),
-                                DefaultTextButton(
-                                  function: () {},
-                                  text: 'تجاهل',
-                                  color: Constant.defaultColor,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w400,
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )));
-        },
-        backgroundColor: Constant.defaultColor,
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
