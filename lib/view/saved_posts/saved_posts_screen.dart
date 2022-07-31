@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,10 +62,13 @@ class SavedPostsScreen extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 30.r,
-                            backgroundColor: Constant.shadowColor,
-                            child: const Icon(
+                            backgroundColor: LayoutCubit.get(context).user!.profileImageUrl != null? null :Constant.shadowColorLight,
+                            backgroundImage: LayoutCubit.get(context).user!.profileImageUrl != null
+                                ? CachedNetworkImageProvider(LayoutCubit.get(context).user!.profileImageUrl!)
+                                : null,
+                            child:LayoutCubit.get(context).user!.profileImageUrl != null? null : Icon(
                               FontAwesomeIcons.solidUser,
-                              color: Constant.colorBackground,
+                              color: Constant.iconColor,
                             ),
                           ),
                           SizedBox(

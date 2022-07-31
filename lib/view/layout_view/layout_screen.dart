@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,7 @@ class LayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LayoutCubit.get(context).getUser();
     return BlocConsumer<LayoutCubit, LayoutState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -92,10 +94,13 @@ class LayoutScreen extends StatelessWidget {
                                 children: [
                                   CircleAvatar(
                                     radius: 30.r,
-                                    backgroundColor: Constant.shadowColor,
-                                    child: const Icon(
+                                    backgroundColor: LayoutCubit.get(context).user!.profileImageUrl != null? null :Constant.shadowColorLight,
+                                    backgroundImage: LayoutCubit.get(context).user!.profileImageUrl != null
+                                        ? CachedNetworkImageProvider(LayoutCubit.get(context).user!.profileImageUrl!)
+                                        : null,
+                                    child:LayoutCubit.get(context).user!.profileImageUrl != null? null : Icon(
                                       FontAwesomeIcons.solidUser,
-                                      color: Constant.colorBackground,
+                                      color: Constant.iconColor,
                                     ),
                                   ),
                                   SizedBox(

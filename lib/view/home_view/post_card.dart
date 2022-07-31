@@ -32,11 +32,21 @@ class PostCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30.r,
-                  backgroundColor: Constant.shadowColorLight,
-                  child: Icon(
+                  backgroundColor: post.user!.profileImageUrl != null? null :Constant.shadowColorLight,
+                  backgroundImage: post.user!.profileImageUrl != null
+                      ? CachedNetworkImageProvider(post.user!.profileImageUrl!)
+                      : null,
+                  child:post.user!.profileImageUrl != null? null : Icon(
                     FontAwesomeIcons.solidUser,
                     color: Constant.iconColor,
                   ),
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Text(
+                  '${post.user!.firstName!} ${post.user!.lastName!}',
+                  style: ConstantTextStyle.medium14BlueTextStyle,
                 ),
                 Spacer(),
                 IconButton(

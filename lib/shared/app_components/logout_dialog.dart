@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,9 +48,10 @@ class LogoutDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: ()async {
-            await FirebaseAuth.instance.signOut().then((value) {
+            await FirebaseAuth.instance.signOut().then((value) async {
               LocalStorage.sharedPreferences.clear();
               navigateFinish(context, LoginScreen());
+              await  FirebaseFirestore.instance.clearPersistence();
             });
           },
           child: Container(
