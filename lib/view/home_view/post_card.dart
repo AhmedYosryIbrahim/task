@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -105,10 +106,7 @@ class PostCard extends StatelessWidget {
               height: 10,
             ),
             if (post.imageUrl != null)
-              Image.network(
-                post.imageUrl!,
-                fit: BoxFit.cover,
-              ),
+              CachedNetworkImage(imageUrl: post.imageUrl!, fit: BoxFit.cover),
             SizedBox(
               height: 10,
             ),

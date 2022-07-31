@@ -8,6 +8,7 @@ import 'package:untitled/firebase_options.dart';
 import 'package:untitled/view/loading_view/loading_screen.dart';
 import 'package:untitled/view/login_view/login_screen.dart';
 import 'package:untitled/view_model/layout_view_model/layout_cubit.dart';
+import 'package:untitled/view_model/login_view_model/cubit.dart';
 import 'helpers/local_storage/local_storage.dart';
 import 'shared/MyBlocObserver.dart';
 import 'shared/styles/constant_text_style.dart';
@@ -43,8 +44,17 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.black,
         systemNavigationBarDividerColor: Colors.black));
-    return BlocProvider(
-      create: (context) => LayoutCubit()..getUser(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+          LayoutCubit()
+            ..getUser(),
+        ),
+        BlocProvider(
+          create: (context) => AppLoginCubit(),
+        ),
+      ],
       child: ScreenUtilInit(
         //1080 * 2280  pixel 4  5.7
         //دة التلفون الكلنا هنشتغل علية علشان يبقى موحد على الكل

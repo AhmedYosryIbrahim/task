@@ -40,7 +40,11 @@ class LayoutCubit extends Cubit<LayoutState> {
     FirebaseFirestore.instance
         .collection('users')
         .doc(LocalStorage.getData(key: 'uId'))
-        .get()
+        .get(
+        const GetOptions(
+          source: Source.serverAndCache,
+        )
+    )
         .then((value) {
       if (value.exists) {
         user = UserModel.fromJson(value.data()!);
@@ -172,7 +176,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     FirebaseFirestore.instance
         .collection('posts')
         .doc(postModel.id)
-        .set(postModel.toJson())
+        .set(postModel.toJson(),)
         .then((value) {
       emit(LayoutCreatePostSuccessState());
     }).catchError((error) {
@@ -185,7 +189,11 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   void getPosts() {
     emit(LayoutGetPostsLoadingState());
-    FirebaseFirestore.instance.collection('posts').get().then((value) {
+    FirebaseFirestore.instance.collection('posts').get(
+      const GetOptions(
+        source: Source.serverAndCache,
+      )
+    ).then((value) {
       if (value.docs.isNotEmpty) {
         posts = value.docs.map((e) => PostModel.fromJson(e.data())).toList();
         emit(LayoutGetPostsSuccessState());
@@ -261,7 +269,11 @@ class LayoutCubit extends Cubit<LayoutState> {
           (e) async => await FirebaseFirestore.instance
           .collection('posts')
           .doc(e)
-          .get()
+          .get(
+              const GetOptions(
+                source: Source.serverAndCache,
+              )
+          )
           .then((value) {
         return PostModel.fromJson(value.data()!);
       }),

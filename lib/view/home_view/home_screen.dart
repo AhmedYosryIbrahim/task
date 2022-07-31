@@ -54,7 +54,14 @@ class HomeScreen extends StatelessWidget {
               showDialog(
                   context: context,
                   barrierColor: Colors.grey[700],
-                  builder: (context) => BlocBuilder<LayoutCubit, LayoutState>(
+                  builder: (context) => BlocConsumer<LayoutCubit, LayoutState>(
+                        listener: (context, state) {
+                          // TODO: implement listener
+                          if (state is LayoutCreatePostSuccessState) {
+                            LayoutCubit.get(context).getPosts();
+                            Navigator.pop(context);
+                          }
+                        },
                         builder: (context, state) {
                           return Dialog(
                               insetPadding: EdgeInsets.all(10),
@@ -159,7 +166,9 @@ class HomeScreen extends StatelessWidget {
                                               textSize: 16.sp,
                                             ),
                                             DefaultTextButton(
-                                              function: () {},
+                                              function: () {
+                                                Navigator.pop(context);
+                                              },
                                               text: 'تجاهل',
                                               color: Constant.defaultColor,
                                               fontSize: 16.sp,

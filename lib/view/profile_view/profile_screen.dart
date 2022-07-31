@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,11 +59,8 @@ class ProfileScreen extends StatelessWidget {
                                   ? const AssetImage(
                                 'assets/images/camera.png',
                                     )
-                                  : NetworkImage(
-                                      LayoutCubit.get(context)
-                                          .user!
-                                          .coverImageUrl!,
-                                    ) as ImageProvider,
+                                  :  CachedNetworkImageProvider( LayoutCubit.get(context).user!.coverImageUrl!) as ImageProvider,
+
                             ),
                           ),
                           child: state is LayoutPickCoverImageLoadingState
@@ -88,11 +86,7 @@ class ProfileScreen extends StatelessWidget {
                                   ? const AssetImage(
                                       'assets/images/camera.png',
                                     )
-                                  : NetworkImage(
-                                      LayoutCubit.get(context)
-                                          .user!
-                                          .profileImageUrl!,
-                                    ) as ImageProvider,
+                                  :  CachedNetworkImageProvider( LayoutCubit.get(context).user!.profileImageUrl!) as ImageProvider,
                           child: state is LayoutPickProfileImageLoadingState
                               ? const CircularProgressIndicator()
                               : const SizedBox(),

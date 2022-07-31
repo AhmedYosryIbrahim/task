@@ -37,4 +37,17 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       emit(AppLoginErrorState(error.toString()));
     });
   }
+  // forgot password
+  void forgotPassword({
+    required String email,
+  }) async {
+    emit(AppLoginResetPasswordLoadingState());
+    await FirebaseAuth.instance
+        .sendPasswordResetEmail(email: email)
+        .then((value) {
+      emit(AppLoginResetPasswordSuccessState());
+    }).catchError((error) {
+      emit(AppLoginResetPasswordErrorState(error.toString()));
+    });
+  }
 }

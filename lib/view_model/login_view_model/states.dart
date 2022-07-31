@@ -18,3 +18,11 @@ class AppLoginErrorState extends AppLoginStates {
 
   AppLoginErrorState(this.error);
 }
+class AppLoginResetPasswordLoadingState extends AppLoginStates {}
+class AppLoginResetPasswordSuccessState extends AppLoginStates {}
+class AppLoginResetPasswordErrorState extends AppLoginStates {
+  final String error;
+
+  AppLoginResetPasswordErrorState(this.error);
+}
+
