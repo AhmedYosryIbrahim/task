@@ -116,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                                 function: () {
                                   showModalBottomSheet(
                                     context: context,
-                                    builder: (context) => Container(
+                                    builder: (context) => SizedBox(
                                       height: MediaQuery.of(context)
                                               .size
                                               .height *

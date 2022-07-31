@@ -133,7 +133,7 @@ class LayoutScreen extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   LayoutCubit.get(context).changeNavBarIndex(0);
-                                  navigateFinish(context, LayoutScreen());
+                                  navigateFinish(context, const LayoutScreen());
                                 },
                               ),
                               Divider(
@@ -151,7 +151,7 @@ class LayoutScreen extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   LayoutCubit.get(context).changeNavBarIndex(1);
-                                  navigateFinish(context, LayoutScreen());
+                                  navigateFinish(context, const LayoutScreen());
                                 },
                               ),
                               Divider(
@@ -168,7 +168,7 @@ class LayoutScreen extends StatelessWidget {
                                   color: Constant.iconColor,
                                 ),
                                 onTap: () {
-                                  navigateTo(context, SavedPostsScreen());
+                                  navigateTo(context, const SavedPostsScreen());
                                 },
                               ),
                               Divider(

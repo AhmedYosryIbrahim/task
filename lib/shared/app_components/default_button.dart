@@ -32,6 +32,12 @@ class DefaultButton extends StatelessWidget {
     return Container(
       width: width,
       height: 50.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          radius,
+        ),
+        color: background,
+      ),
       child: MaterialButton(
         onPressed: function,
         child: Text(
@@ -43,12 +49,6 @@ class DefaultButton extends StatelessWidget {
             fontFamily: 'Almarai',
           ),
         ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          radius,
-        ),
-        color: background,
       ),
     );
   }

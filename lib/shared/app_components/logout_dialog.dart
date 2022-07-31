@@ -8,11 +8,11 @@ import 'package:untitled/shared/styles/ConstansColors.dart';
 import 'package:untitled/view/login_view/login_screen.dart';
 
 class LogoutDialog extends StatelessWidget {
-  @override
   final String title;
   final String title2;
 
   const LogoutDialog({required this.title2, required this.title});
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
@@ -36,14 +36,14 @@ class LogoutDialog extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.r),
                 border: Border.all(color: const Color(0xffC3C6D1))),
+            width: MediaQuery.of(context).size.width * .3,
             child: const Center(
               child: Text(
                 'تراجع',
-                style: TextStyle(color: Constant.primaryColor),
+                style: TextStyle(color: Constant.defaultColor),
                 textAlign: TextAlign.center,
               ),
             ),
-            width: MediaQuery.of(context).size.width * .3,
           ),
         ),
         TextButton(
@@ -56,17 +56,17 @@ class LogoutDialog extends StatelessWidget {
           },
           child: Container(
             height: MediaQuery.of(context).size.height * .067,
+            width: MediaQuery.of(context).size.width * .3,
+            decoration: BoxDecoration(
+              color: Constant.defaultColor,
+              borderRadius: BorderRadius.circular(10.r),
+            ),
             child: const Center(
               child: Text(
                 'مغادرة',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white),
               ),
-            ),
-            width: MediaQuery.of(context).size.width * .3,
-            decoration: BoxDecoration(
-              color: Constant.primaryColor,
-              borderRadius: BorderRadius.circular(10.r),
             ),
           ),
         ),

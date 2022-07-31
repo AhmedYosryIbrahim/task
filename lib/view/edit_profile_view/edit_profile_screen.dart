@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled/helpers/local_storage/local_storage.dart';
 import 'package:untitled/models/user_model.dart';
 import 'package:untitled/shared/app_components/default_button.dart';
 import 'package:untitled/shared/app_components/error_dialog.dart';
@@ -13,8 +12,6 @@ import 'package:untitled/shared/styles/constant_text_style.dart';
 import 'package:untitled/view/layout_view/layout_screen.dart';
 import 'package:untitled/view/loading_view/loading_screen.dart';
 import 'package:untitled/view_model/layout_view_model/layout_cubit.dart';
-import 'package:untitled/view_model/register_view_model/cubit.dart';
-import 'package:untitled/view_model/register_view_model/states.dart';
 
 class EditProfileScreen extends StatelessWidget {
   final UserModel user;

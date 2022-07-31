@@ -51,7 +51,7 @@ class UserModel {
     "password": password,
     "profileImageUrl": profileImageUrl,
     "coverImageUrl": coverImageUrl,
-    "posts": List<dynamic>.from(posts!.map((x) => x)) ?? const [],
+    "posts": List<dynamic>.from(posts!.map((x) => x)),
     "createdAt": createdAt,
   };
 }

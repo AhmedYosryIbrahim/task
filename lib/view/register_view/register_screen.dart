@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
           // TODO: implement listener
           if (state is AppRegisterCreateUserSuccessState) {
             LocalStorage.saveData(key: 'uId', value: state.uId);
-            navigateFinish(context, LayoutScreen());
+            navigateFinish(context, const LayoutScreen());
           }
           if (state is AppRegisterCreateUserErrorState) {
             errorDialog(context: context, error: state.error);

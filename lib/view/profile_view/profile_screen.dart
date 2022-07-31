@@ -8,7 +8,6 @@ import 'package:untitled/shared/styles/constant_text_style.dart';
 import 'package:untitled/view/edit_profile_view/edit_profile_screen.dart';
 import 'package:untitled/view/saved_posts/saved_posts_screen.dart';
 import 'package:untitled/view_model/layout_view_model/layout_cubit.dart';
-import 'package:untitled/view_model/layout_view_model/layout_cubit.dart';
 
 import '../../shared/app_components/logout_dialog.dart';
 
@@ -27,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
           backgroundColor: Constant.colorBackground,
           body: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 0.4.sh,
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,

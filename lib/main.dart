@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/firebase_options.dart';
-import 'package:untitled/view/loading_view/loading_screen.dart';
 import 'package:untitled/view/login_view/login_screen.dart';
 import 'package:untitled/view_model/layout_view_model/layout_cubit.dart';
 import 'package:untitled/view_model/login_view_model/cubit.dart';
@@ -29,7 +28,7 @@ void main() async {
         () {
       // Use cubits...
       runApp(
-        MyApp(),
+        const MyApp(),
       );
     },
     blocObserver: MyBlocObserver(),
@@ -37,6 +36,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class MyApp extends StatelessWidget {
               // SplashScreen()
               // وتحط الكلاس بتاعك
               home: LocalStorage.getData(key: 'uId') != null
-                  ? LayoutScreen()
+                  ? const LayoutScreen()
                   : LoginScreen(),
             ),
       ),

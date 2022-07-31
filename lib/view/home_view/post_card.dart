@@ -48,7 +48,7 @@ class PostCard extends StatelessWidget {
                   '${post.user!.firstName!} ${post.user!.lastName!}',
                   style: ConstantTextStyle.medium14BlueTextStyle,
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   onPressed: () {},
                   icon: Icon(
@@ -112,25 +112,24 @@ class PostCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             if (post.imageUrl != null)
               CachedNetworkImage(imageUrl: post.imageUrl!, fit: BoxFit.cover),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               post.content!,
               style: ConstantTextStyle.medium14BlueTextStyle,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
         ),
       ),
     );
-    ;
   }
 }

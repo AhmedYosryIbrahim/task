@@ -23,7 +23,7 @@ class LoadingScreen extends StatelessWidget {
               LoadingAnimationWidget.bouncingBall(color: Constant.layoutAppbar, size: 50),
             ],
           ),
-SizedBox(
+const SizedBox(
             height: 20,
           ),
           Text('جاري التحميل',

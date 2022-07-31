@@ -23,7 +23,7 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   List<Widget> screens = [
     HomeScreen(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   void changeNavBarIndex(int index) {

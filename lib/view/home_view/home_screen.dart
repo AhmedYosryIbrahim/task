@@ -45,9 +45,9 @@ class HomeScreen extends StatelessWidget {
               : ListView.builder(
                   itemBuilder: (context, index) {
                     return PostCard(
-                        post: LayoutCubit.get(context).posts![index]);
+                        post: LayoutCubit.get(context).posts[index]);
                   },
-                  itemCount: LayoutCubit.get(context).posts!.length,
+                  itemCount: LayoutCubit.get(context).posts.length,
                 ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -64,13 +64,13 @@ class HomeScreen extends StatelessWidget {
                         },
                         builder: (context, state) {
                           return Dialog(
-                              insetPadding: EdgeInsets.all(10),
+                              insetPadding: const EdgeInsets.all(10),
                               child: Stack(
                                 alignment: Alignment.topCenter,
                                 children: <Widget>[
                                   Container(
                                     width: double.infinity,
-                                    padding: EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20.r),
                                     ),
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                                           maxLength: 120,
                                           controller: _postController,
                                           cursorColor: Constant.defaultColor,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Constant.defaultColor,
