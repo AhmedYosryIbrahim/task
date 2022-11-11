@@ -53,6 +53,7 @@ class LayoutCubit extends Cubit<LayoutState> {
         emit(LayoutGetUserErrorState('user not found'));
       }
     }).catchError((error) {
+      print(error.toString());
       emit(LayoutGetUserErrorState(error.toString()));
     });
   }
@@ -201,6 +202,7 @@ class LayoutCubit extends Cubit<LayoutState> {
         emit(LayoutGetPostsErrorState('posts not found'));
       }
     }).catchError((error) {
+
       emit(LayoutGetPostsErrorState(error.toString()));
     });
   }
